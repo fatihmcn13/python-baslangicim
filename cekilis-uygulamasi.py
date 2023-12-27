@@ -1,19 +1,23 @@
 import random as rd
 import tkinter as tk
 
+#listeler
 isimler = []
 hediyeler = []
 
+#isim ekleme fonksiyonu
 def isimeklesene():
     isimler.append(isimgir.get())
     isimlist.config(text=", ".join(isimler))
     isimgir.delete(0, tk.END)
-
+    
+#hediye ekleme fonksyionu
 def hediyeklesene():
     hediyeler.append(hediyegir.get())
     hediyelist.config(text=", ".join(hediyeler))
     hediyegir.delete(0, tk.END)
-
+    
+#çekiliş yaptıran fonksiyon
 def cekilisyap():
     rd.shuffle(isimler)
     rd.shuffle(hediyeler)
@@ -22,7 +26,7 @@ def cekilisyap():
     
     for isim, hediye in zip(isimler, hediyeler):
         cekilis_sonuc.config(text=cekilis_sonuc.cget("text") + f"{isim} --> {hediye}\n")
-
+#sıfırla butonu
 def sifirla():
     global isimler, hediyeler
     isimler = []
@@ -30,11 +34,12 @@ def sifirla():
     isimlist.config(text="")
     hediyelist.config(text="")
     cekilis_sonuc.config(text="")
-
+#pencere oluşturuyoruz
 pencere = tk.Tk()
 pencere.title("Çekiliş Uygulaması")
 pencere.geometry("300x450")
 
+#program arayüzünün oluşturulması
 isimgir_label = tk.Label(pencere, text="İsim Gir")
 isimgir_label.pack()
 isimgir = tk.Entry(pencere)
